@@ -5,7 +5,7 @@ import { Phone, Clock, Sparkles, MessageCircle } from "lucide-react";
 
 export default function TopAnnouncementBar() {
   return (
-    <div className="bg-slate-900 text-slate-200 text-xs sm:text-sm border-b border-amber-500/20 py-2 px-4 transition-all">
+    <div className="hidden sm:block bg-[#0F172A] text-slate-300 py-2 px-4 text-xs border-b border-amber-500/20 transition-all">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-right">
         {/* Promotion Message */}
         <div className="flex items-center gap-2 justify-center md:justify-start">

@@ -1,12 +1,24 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { Sparkles, MoveHorizontal } from "lucide-react";
 
 export default function InteractiveBeforeAfterSection() {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const [containerWidth, setContainerWidth] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.clientWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
   const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return;
@@ -70,7 +82,7 @@ export default function InteractiveBeforeAfterSection() {
                 src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80"
                 alt="قبل العلاج - تصبغات وفراغات"
                 className="absolute inset-0 w-full h-full object-cover max-w-none pointer-events-none"
-                style={{ width: containerRef.current?.getBoundingClientRect().width || "100%" }}
+                style={{ width: containerWidth ? `${containerWidth}px` : (containerRef.current?.getBoundingClientRect().width || "100%") }}
               />
               <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full shadow-md z-10 pointer-events-none">
                 قبل العلاج

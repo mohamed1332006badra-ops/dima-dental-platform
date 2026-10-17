@@ -20,11 +20,18 @@ import { WhatsAppIcon } from "./WhatsAppIcon";
 interface HeroSectionProps {
   selectedDoctor?: string;
   onDoctorSelected?: (doctor: string) => void;
+  selectedSpecialty?: string;
+  onSpecialtySelected?: (specialty: string) => void;
 }
 
-export default function HeroSection({ selectedDoctor, onDoctorSelected }: HeroSectionProps) {
+export default function HeroSection({
+  selectedDoctor,
+  onDoctorSelected,
+  selectedSpecialty,
+  onSpecialtySelected,
+}: HeroSectionProps) {
   const [specialty, setSpecialty] = useState("تجميل وهوليوود سمايل");
-  const [doctor, setDoctor] = useState(selectedDoctor || "د. محمد مسعود");
+  const [doctor, setDoctor] = useState("د. محمد مسعود");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
@@ -32,9 +39,19 @@ export default function HeroSection({ selectedDoctor, onDoctorSelected }: HeroSe
 
   useEffect(() => {
     if (selectedDoctor) {
-      setDoctor(selectedDoctor);
+      if (selectedDoctor.includes("باسل")) setDoctor("د. باسل الميداني");
+      else if (selectedDoctor.includes("ألكسندر") || selectedDoctor.includes("الكسندر")) setDoctor("د. ألكسندر صابر");
+      else if (selectedDoctor.includes("مسعود")) setDoctor("د. محمد مسعود");
+      else if (selectedDoctor.includes("دخيلة")) setDoctor("د. دخيلة القطان");
+      else setDoctor(selectedDoctor);
     }
   }, [selectedDoctor]);
+
+  useEffect(() => {
+    if (selectedSpecialty) {
+      setSpecialty(selectedSpecialty);
+    }
+  }, [selectedSpecialty]);
 
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -202,7 +219,10 @@ export default function HeroSection({ selectedDoctor, onDoctorSelected }: HeroSe
                   </label>
                   <select
                     value={specialty}
-                    onChange={(e) => setSpecialty(e.target.value)}
+                    onChange={(e) => {
+                      setSpecialty(e.target.value);
+                      if (onSpecialtySelected) onSpecialtySelected(e.target.value);
+                    }}
                     className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:bg-white transition-all cursor-pointer"
                   >
                     <option value="تجميل وهوليوود سمايل">تجميل وهوليوود سمايل وعدسات الفينير</option>
@@ -230,10 +250,10 @@ export default function HeroSection({ selectedDoctor, onDoctorSelected }: HeroSe
                     className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:bg-white transition-all cursor-pointer"
                   >
                     <option value="أي طبيب متاح">أي طبيب متاح حسب أقرب موعد</option>
-                    <option value="د. باسل الميداني (أخصائي التقويم)">د. باسل الميداني (أخصائي التقويم الشفاف والفكين)</option>
-                    <option value="د. ألكسندر صابر (أخصائي الزراعة واللثة)">د. ألكسندر صابر (أخصائي جراحة اللثة والزراعة)</option>
-                    <option value="د. محمد مسعود (طبيب تجميل وهوليوود)">د. محمد مسعود (طبيب تجميل الأسنان وهوليوود سمايل)</option>
-                    <option value="د. دخيلة القطان (استشارية أسنان الأطفال)">د. دخيلة القطان (استشارية طب أسنان الأطفال والتخدير الكلي)</option>
+                    <option value="د. باسل الميداني">د. باسل الميداني (أخصائي التقويم الشفاف والفكين)</option>
+                    <option value="د. ألكسندر صابر">د. ألكسندر صابر (أخصائي جراحة اللثة والزراعة)</option>
+                    <option value="د. محمد مسعود">د. محمد مسعود (طبيب تجميل الأسنان وهوليوود سمايل)</option>
+                    <option value="د. دخيلة القطان">د. دخيلة القطان (استشارية طب أسنان الأطفال والتخدير الكلي)</option>
                   </select>
                 </div>
 
@@ -277,16 +297,22 @@ export default function HeroSection({ selectedDoctor, onDoctorSelected }: HeroSe
 
                 {/* Optional Preferred Date */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                  <label htmlFor="appointmentDate" className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
                     <Calendar size={14} className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                    <span>تاريخ الموعد المقترح (اختياري)</span>
+                    <span>تاريخ الموعد المقترح</span>
                   </label>
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:bg-white transition-all"
-                  />
+                  <div className="relative">
+                    <input
+                      type="date"
+                      name="appointmentDate"
+                      id="appointmentDate"
+                      dir="ltr"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-right bg-white focus:ring-2 focus:ring-cyan-700 focus:outline-hidden text-xs sm:text-sm font-sans"
+                      required
+                    />
+                  </div>
                 </div>
 
                 {/* Submit Action Button */}

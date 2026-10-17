@@ -21,9 +21,9 @@ export default function FloatingWhatsApp() {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 font-sans" dir="rtl">
+    <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 font-sans" dir="rtl">
       {isOpen && (
-        <div className="mb-4 w-80 sm:w-96 rounded-2xl bg-white shadow-2xl border border-slate-100 overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-5">
+        <div className="mb-4 w-[calc(100vw-2rem)] sm:w-96 max-w-sm rounded-2xl bg-white shadow-2xl border border-slate-100 overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-5">
           <div className="bg-[#0F172A] p-4 text-white relative">
             <div className="flex items-center gap-3">
               <div className="relative">
@@ -86,9 +86,25 @@ export default function FloatingWhatsApp() {
         </div>
       )}
 
+      {/* Mobile Compact Circular Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-sm shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group"
+        className="sm:hidden w-13 h-13 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all"
+        aria-label="تحدث مع العيادة الآن عبر واتساب"
+      >
+        <span className="relative flex items-center justify-center">
+          <WhatsAppIcon className="w-7 h-7 text-white" />
+          <span className="absolute -top-1 -right-1 flex h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+          </span>
+        </span>
+      </button>
+
+      {/* Desktop Full Button with Text */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="hidden sm:flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-sm shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group"
       >
         <span className="relative flex h-3 w-3">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>

@@ -224,24 +224,18 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Bar: Ministry Disclaimer & Copyright */}
-        <div className="mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center md:text-right">
-          
-          <div className="flex items-center gap-2">
-            <ShieldCheck size={16} className="w-4 h-4 text-emerald-500 shrink-0" />
-            <span>
-              مرخص رسمياً من وزارة الصحة بالمملكة العربية السعودية | جميع الحقوق محفوظة © {new Date().getFullYear()} مجمع عيادات ديمة لطب الأسنان.
-            </span>
-          </div>
-
-          <div className="flex items-center gap-4 text-[11px]">
-            <span>سياسة الخصوصية</span>
+        {/* Official Saudi Regulatory Compliance Bar */}
+        <div className="border-t border-slate-800 pt-6 mt-8 text-center text-xs text-slate-400 space-y-2">
+          <p className="flex items-center justify-center gap-2 flex-wrap">
+            <span>مجمع عيادات ديمة لطب الأسنان — الرياض، شارع التحلية</span>
             <span>•</span>
-            <span>الشروط والأحكام</span>
+            <span>ترخيص وزارة الصحة: 1400029184</span>
             <span>•</span>
-            <span className="text-slate-400">تصميم وتنفيذ فائق الفخامة لقطاع الرعاية الصحية</span>
-          </div>
-
+            <span>ترخيص الإعلان الطبي: M-2026-08192</span>
+          </p>
+          <p className="text-[11px] text-slate-500">
+            مرخص رسمياً وخاضع لإشراف وزارة الصحة بالمملكة العربية السعودية | جميع الحقوق محفوظة © {new Date().getFullYear()}
+          </p>
         </div>
 
       </div>

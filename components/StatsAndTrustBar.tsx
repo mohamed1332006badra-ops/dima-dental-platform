@@ -47,30 +47,28 @@ export default function StatsAndTrustBar() {
   return (
     <section id="trust-stats" className="relative -mt-6 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Metrics Grid */}
-      <div className="bg-white rounded-3xl shadow-xl border border-slate-200/80 p-6 sm:p-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 lg:divide-x lg:divide-x-reverse divide-slate-100">
+      <div className="bg-white rounded-3xl shadow-xl border border-slate-200/80 p-4 sm:p-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <div
                 key={index}
-                className={`flex items-start gap-4 pt-4 sm:pt-0 ${
-                  index !== 0 ? "lg:pr-6" : ""
-                } transition-all hover:translate-y-[-2px]`}
+                className="flex flex-col sm:flex-row items-start gap-2.5 sm:gap-4 p-2 sm:p-0 transition-all hover:translate-y-[-2px]"
               >
                 <div
-                  className={`w-14 h-14 rounded-2xl ${stat.bgColor} ${stat.borderColor} border flex items-center justify-center shrink-0 shadow-sm`}
+                  className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl ${stat.bgColor} ${stat.borderColor} border flex items-center justify-center shrink-0 shadow-sm`}
                 >
-                  <Icon size={28} className={`w-7 h-7 ${stat.color} shrink-0`} />
+                  <Icon className={`w-5 h-5 sm:w-7 sm:h-7 ${stat.color} shrink-0`} />
                 </div>
                 <div>
-                  <div className="text-3xl font-black text-slate-900 tracking-tight flex items-baseline gap-1">
+                  <div className="text-xl sm:text-3xl font-black text-slate-900 tracking-tight flex items-baseline gap-1">
                     <span>{stat.value}</span>
                   </div>
-                  <h4 className="text-sm font-bold text-slate-800 mt-1">
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-800 mt-0.5 sm:mt-1 leading-snug">
                     {stat.label}
                   </h4>
-                  <p className="text-xs text-slate-500 mt-0.5 leading-normal">
+                  <p className="text-[10px] sm:text-xs text-slate-500 mt-0.5 leading-normal">
                     {stat.sublabel}
                   </p>
                 </div>

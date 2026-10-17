@@ -7,6 +7,7 @@ import HeroSection from "@/components/HeroSection";
 import StatsAndTrustBar from "@/components/StatsAndTrustBar";
 import DoctorsSection from "@/components/DoctorsSection";
 import InteractiveBeforeAfterSection from "@/components/InteractiveBeforeAfterSection";
+import GoogleReviewsSection from "@/components/GoogleReviewsSection";
 import SpecializedClinicsSection from "@/components/SpecializedClinicsSection";
 import TabbyTamaraBanner from "@/components/TabbyTamaraBanner";
 import LocationAndContactSection from "@/components/LocationAndContactSection";
@@ -15,9 +16,14 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export default function Home() {
   const [selectedDoctor, setSelectedDoctor] = useState<string>("أي طبيب متاح");
+  const [selectedSpecialty, setSelectedSpecialty] = useState<string>("تجميل وهوليوود سمايل");
 
   const handleSelectDoctor = (doctorName: string) => {
     setSelectedDoctor(doctorName);
+  };
+
+  const handleSelectSpecialty = (specialtyName: string) => {
+    setSelectedSpecialty(specialtyName);
   };
 
   return (
@@ -32,6 +38,8 @@ export default function Home() {
       <HeroSection
         selectedDoctor={selectedDoctor}
         onDoctorSelected={handleSelectDoctor}
+        selectedSpecialty={selectedSpecialty}
+        onSpecialtySelected={handleSelectSpecialty}
       />
 
       {/* 4. Trust & Stats Bar + Tabby & Tamara Partner Logos */}
@@ -43,16 +51,19 @@ export default function Home() {
       {/* 6. Native Drag & Touch Before & After Comparison */}
       <InteractiveBeforeAfterSection />
 
-      {/* 7. Specialized Clinical Pillars & 3D CBCT / Anesthesia Units */}
-      <SpecializedClinicsSection />
+      {/* 7. Verified Google Maps Reviews Section */}
+      <GoogleReviewsSection />
 
-      {/* 8. Tabby & Tamara Financing Reassurance & Calculator */}
+      {/* 8. Specialized Clinical Pillars & 3D CBCT / Anesthesia Units */}
+      <SpecializedClinicsSection onSelectSpecialty={handleSelectSpecialty} />
+
+      {/* 9. Tabby & Tamara Financing Reassurance & Calculator */}
       <TabbyTamaraBanner />
 
-      {/* 9. Location, Working Hours & Google Map */}
+      {/* 10. Location, Working Hours & Google Map */}
       <LocationAndContactSection />
 
-      {/* 10. Footer with Business Data & Disclaimers */}
+      {/* 11. Footer with Saudi Licensing & Regulatory Credentials */}
       <Footer />
 
       {/* Interactive Floating Quick WhatsApp Widget */}

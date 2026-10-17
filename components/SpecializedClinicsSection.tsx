@@ -23,9 +23,14 @@ interface ServiceItem {
   image: string;
   features: string[];
   specialtyTag: string;
+  specialtyValue: string;
 }
 
-export default function SpecializedClinicsSection() {
+export default function SpecializedClinicsSection({
+  onSelectSpecialty,
+}: {
+  onSelectSpecialty?: (specialty: string) => void;
+} = {}) {
   const services: ServiceItem[] = [
     {
       id: "orthodontics",
@@ -33,9 +38,10 @@ export default function SpecializedClinicsSection() {
       subtitle: "Clear Aligners & Orthodontics",
       description: "علاج الفراغات وتزاحم الأسنان وتصحيح إطباق الفكين بأحدث أجهزة التقويم الشفاف غير المرئي والتقويم الكريستالي السريع.",
       icon: Smile,
-      image: "https://images.unsplash.com/photo-1572021335469-31706a17aaef?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=600&q=80",
       features: ["قوالب شفافة غير مرئية ومتحركة", "تخطيط ثلاثي الأبعاد لخطوات العلاج", "متابعة دورية رقمية مرنة"],
       specialtyTag: "تقويم حديث بدون ألم",
+      specialtyValue: "تقويم أسنان شفاف ومعدني",
     },
     {
       id: "implantology",
@@ -43,9 +49,10 @@ export default function SpecializedClinicsSection() {
       subtitle: "Dental Implants & Periodontics",
       description: "تعويض الأسنان المفقودة بجراحات دقيقة ومعدلات نجاح قياسية، مع تطعيم العظام ورفع الجيب الفكي لثبات يدوم مدى الحياة.",
       icon: Layers,
-      image: "https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=600&q=80",
       features: ["زرعات سويسرية وألمانية معتمدة", "زراعة فورية في نفس اليوم للحالات المؤهلة", "إجراء جراحي بدون ألم"],
       specialtyTag: "نسبة نجاح 99.4%",
+      specialtyValue: "زراعة وجراحة اللثة",
     },
     {
       id: "smile-design",
@@ -53,9 +60,10 @@ export default function SpecializedClinicsSection() {
       subtitle: "Digital Smile Design & Veneers",
       description: "ابتسامة هوليوود مخصصة بدقة ثلاثية الأبعاد (Digital Smile Design)، باستخدام عدسات الفينير واللومينير فائقة النعومة والطبيعية.",
       icon: Sparkles,
-      image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=600&q=80",
       features: ["محاكاة رقمية لشكل الابتسامة قبل البدء", "عدسات إيماكس رقيقة تحافظ على بنية السن", "مقاومة تامة للتصبغات وتغير اللون"],
       specialtyTag: "ابتسامة المشاهير",
+      specialtyValue: "تجميل وهوليوود سمايل",
     },
     {
       id: "pediatric-general-anesthesia",
@@ -63,9 +71,10 @@ export default function SpecializedClinicsSection() {
       subtitle: "Pediatric Dentistry & General Anesthesia",
       description: "إنهاء جميع مشاكل التسوس للأطفال وذوي الاحتياجات الخاصة في جلسة واحدة دون خوف أو توتر، تحت إشراف نخبة من استشاريي التخدير المعتمدين.",
       icon: Baby,
-      image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80",
       features: ["وحدة تخدير كلي متكاملة ومعتمدة", "إنهاء كافة المعالجات بجلسة واحدة", "بيئة مرحة ومريحة لطمأنة الطفل"],
       specialtyTag: "وحدة معتمدة للأطفال",
+      specialtyValue: "أسنان أطفال وتخدير كلي",
     },
     {
       id: "endodontics",
@@ -73,9 +82,10 @@ export default function SpecializedClinicsSection() {
       subtitle: "Microscopic Endodontics",
       description: "معالجة ميكروسكوبية فائقة الدقة لقنوات الجذور وعصب الأسنان المعقدة للحفاظ على السن الطبيعي وحمايته من الخلع مدى الحياة.",
       icon: Crosshair,
-      image: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80",
       features: ["ميكروسكوب جراحي لتكبير القنوات الدقيقة", "تنظيف وتعقيم بالليزر للأنسجة", "جلسات علاجية سريعة ومريحة"],
       specialtyTag: "حفاظ دائم على السن",
+      specialtyValue: "علاج جذور وعصب الأسنان",
     },
     {
       id: "teeth-whitening",
@@ -83,11 +93,22 @@ export default function SpecializedClinicsSection() {
       subtitle: "Laser Whitening & Hygiene",
       description: "إزالة الجير والتصبغات العميقة واستعادة النضارة الطبيعية للأسنان ببروتوكولات التبييض البارد بالليزر في جلسة لا تتجاوز 45 دقيقة.",
       icon: Zap,
-      image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=600&q=80",
+      image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80",
       features: ["تفتيح يصل إلى 8 درجات أفتح", "حماية المينا وتقليل حساسية الأسنان", "إزالة التصبغات الناتجة عن القهوة والتدخين"],
       specialtyTag: "نتائج فورية بجلسة واحدة",
+      specialtyValue: "تنظيف وتبييض الأسنان بالليزر",
     },
   ];
+
+  const handleBookService = (specialtyValue: string) => {
+    if (onSelectSpecialty) {
+      onSelectSpecialty(specialtyValue);
+    }
+    const bookingWidget = document.getElementById("booking-widget");
+    if (bookingWidget) {
+      bookingWidget.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section id="services" className="py-24 bg-[#F8FAFC] relative overflow-hidden">
@@ -170,13 +191,14 @@ export default function SpecializedClinicsSection() {
 
                   {/* Booking CTA for this Service */}
                   <div className="pt-3">
-                    <a
-                      href="#booking-widget"
-                      className="w-full bg-slate-900 hover:bg-cyan-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
+                    <button
+                      type="button"
+                      onClick={() => handleBookService(service.specialtyValue)}
+                      className="w-full bg-slate-900 hover:bg-cyan-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
                     >
-                      <span>احجز هذا القسم بالتقسيط</span>
+                      <span>احجز هذا القسم</span>
                       <ArrowLeft size={14} className="w-3.5 h-3.5 shrink-0" />
-                    </a>
+                    </button>
                   </div>
 
                 </div>

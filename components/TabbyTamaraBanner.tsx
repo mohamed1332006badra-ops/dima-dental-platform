@@ -13,7 +13,7 @@ import { TabbyBadge, TamaraBadge } from "./TabbyTamaraBadges";
 export default function TabbyTamaraBanner() {
   const [treatmentCost, setTreatmentCost] = useState<number>(4000);
 
-  const predefinedAmounts = [1600, 3200, 4800, 8000, 12000];
+  const predefinedAmounts = [1000, 4000, 8000, 12000];
   const monthlyInstallment = Math.round(treatmentCost / 4);
 
   return (
@@ -125,27 +125,36 @@ export default function TabbyTamaraBanner() {
 
                 <input
                   type="range"
-                  min="800"
-                  max="16000"
-                  step="200"
+                  min="1000"
+                  max="12000"
+                  step="500"
                   value={treatmentCost}
                   onChange={(e) => setTreatmentCost(Number(e.target.value))}
                   className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-400"
                 />
 
+                {/* Step Values Labels under slider */}
+                <div className="flex justify-between items-center px-1 text-[10px] sm:text-xs font-semibold text-slate-400 whitespace-nowrap" dir="ltr">
+                  <span>1,000</span>
+                  <span>4,000</span>
+                  <span>8,000</span>
+                  <span>12,000</span>
+                </div>
+
                 {/* Predefined Quick Buttons */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {predefinedAmounts.map((amt) => (
+                <div className="flex items-center justify-between gap-1.5 pt-2">
+                  {[1000, 4000, 8000, 12000].map((amt) => (
                     <button
                       key={amt}
+                      type="button"
                       onClick={() => setTreatmentCost(amt)}
-                      className={`text-xs px-2.5 py-1 rounded-lg border font-bold transition-all ${
+                      className={`flex-1 py-1.5 px-1 sm:px-2 rounded-lg border text-center whitespace-nowrap text-[10px] sm:text-xs font-semibold transition-all ${
                         treatmentCost === amt
-                          ? "bg-amber-400 text-slate-950 border-amber-400"
-                          : "bg-slate-800 text-slate-300 border-slate-700 hover:border-slate-500"
+                          ? "bg-amber-400 text-slate-950 border-amber-400 font-bold shadow-sm"
+                          : "bg-slate-800 text-slate-400 border-slate-700 hover:text-white hover:border-slate-500"
                       }`}
                     >
-                      {amt.toLocaleString("ar-SA")} ر.س
+                      {amt.toLocaleString("en-US")}
                     </button>
                   ))}
                 </div>
