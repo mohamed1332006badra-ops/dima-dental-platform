@@ -5,12 +5,12 @@ import {
   MapPin, 
   Phone, 
   Clock, 
-  MessageCircle, 
   ExternalLink, 
   Navigation,
   Car,
   Building
 } from "lucide-react";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 
 export default function LocationAndContactSection() {
   const googleMapsUrl = "https://maps.google.com/?q=Dima+Dental+Center+Al+Olaya+Riyadh";
@@ -97,7 +97,7 @@ export default function LocationAndContactSection() {
                 {/* Direct WhatsApp Reservations */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 text-xs text-slate-600">
-                    <MessageCircle size={16} className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <WhatsAppIcon className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span className="font-semibold">واتساب الحجوزات:</span>
                   </div>
                   <a
@@ -129,7 +129,7 @@ export default function LocationAndContactSection() {
                 rel="noopener noreferrer"
                 className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-2xl text-sm flex items-center justify-center gap-3 shadow-md shadow-emerald-700/20 transition-all"
               >
-                <MessageCircle size={16} className="w-4 h-4 shrink-0" />
+                <WhatsAppIcon className="w-5 h-5 shrink-0" />
                 <span>واتساب الحجوزات: 0500179494</span>
               </a>
 

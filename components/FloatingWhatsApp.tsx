@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { MessageCircle, X, Send, Sparkles, CheckCheck } from "lucide-react";
+import { X, Send, Sparkles, CheckCheck } from "lucide-react";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 
 export default function FloatingWhatsApp() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,7 @@ export default function FloatingWhatsApp() {
             <div className="flex items-center gap-3">
               <div className="relative">
                 <div className="w-11 h-11 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-400">
-                  <MessageCircle size={24} />
+                  <WhatsAppIcon className="w-6 h-6" />
                 </div>
                 <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-[#0F172A] rounded-full"></span>
               </div>
@@ -78,7 +79,7 @@ export default function FloatingWhatsApp() {
               onClick={() => handleOpenWhatsApp("السلام عليكم، أود التواصل مع فريق الاستقبال بمجمع ديمة لطب الأسنان.")}
               className="w-full py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm transition"
             >
-              <MessageCircle size={16} />
+              <WhatsAppIcon className="w-5 h-5" />
               <span>محادثة حرة عبر واتساب</span>
             </button>
           </div>
@@ -93,7 +94,7 @@ export default function FloatingWhatsApp() {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
           <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
         </span>
-        <MessageCircle className="fill-white/10" size={22} />
+        <WhatsAppIcon className="w-5 h-5 text-white" />
         <span className="text-xs sm:text-sm font-semibold">تحدث مع العيادة الآن</span>
       </button>
     </div>

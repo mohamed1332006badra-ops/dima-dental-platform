@@ -29,7 +29,7 @@ const doctors: Doctor[] = [
     specialty: "جراحة اللثة التجميلية وتطعيم العظام وزراعة الأسنان المتقدمة",
     experience: "+16 سنة خبرة",
     rating: "4.9 ★",
-    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: "masoud",

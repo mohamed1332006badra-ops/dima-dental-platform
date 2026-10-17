@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+html, body, * {
+  font-family: 'Cairo', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea {
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+}
+
 /* SVG Safety: strictly limit default SVG dimensions so they never expand into full-screen blobs */
 svg {
   display: inline-block;

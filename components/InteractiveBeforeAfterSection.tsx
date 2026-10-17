@@ -53,7 +53,7 @@ export default function InteractiveBeforeAfterSection() {
           >
             {/* After Image (Full width background) */}
             <img
-              src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=1200&q=80"
+              src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=800&q=80"
               alt="بعد العلاج - ابتسامة ناصعة ومتناسقة"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             />
@@ -67,7 +67,7 @@ export default function InteractiveBeforeAfterSection() {
               style={{ width: `${sliderPosition}%` }}
             >
               <img
-                src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=80"
+                src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80"
                 alt="قبل العلاج - تصبغات وفراغات"
                 className="absolute inset-0 w-full h-full object-cover max-w-none pointer-events-none"
                 style={{ width: containerRef.current?.getBoundingClientRect().width || "100%" }}

@@ -10,12 +10,12 @@ import {
   Phone, 
   Stethoscope, 
   ArrowLeft, 
-  Star,
-  ShieldCheck,
-  CreditCard,
-  MessageCircle
+  Star, 
+  ShieldCheck, 
+  CreditCard 
 } from "lucide-react";
 import TabbyTamaraBadges from "./TabbyTamaraBadges";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 
 interface HeroSectionProps {
   selectedDoctor?: string;
@@ -131,7 +131,7 @@ export default function HeroSection({ selectedDoctor, onDoctorSelected }: HeroSe
                 rel="noopener noreferrer"
                 className="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-6 py-3.5 rounded-2xl text-sm sm:text-base border border-emerald-400/40 flex items-center gap-2.5 transition-all shadow-xl shadow-emerald-950/40 transform hover:scale-105 shrink-0"
               >
-                <MessageCircle size={20} className="w-5 h-5 text-white shrink-0" />
+                <WhatsAppIcon className="w-5 h-5 shrink-0" />
                 <span>واتساب الحجوزات: 0500179494</span>
               </a>
 
@@ -294,7 +294,7 @@ export default function HeroSection({ selectedDoctor, onDoctorSelected }: HeroSe
                   type="submit"
                   className="w-full bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-800 hover:from-emerald-500 hover:to-teal-700 text-white font-extrabold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-700/25 flex items-center justify-center gap-2.5 transition-all transform hover:scale-[1.02] active:scale-[0.98] mt-2"
                 >
-                  <MessageCircle size={20} className="w-5 h-5 text-white shrink-0" />
+                  <WhatsAppIcon className="w-5 h-5 shrink-0" />
                   <span>تأكيد الحجز الفوري عبر واتساب (0500179494)</span>
                 </button>
 
