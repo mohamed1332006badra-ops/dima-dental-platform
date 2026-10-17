@@ -5,6 +5,26 @@ import { Award, Star, Users, ShieldCheck, CreditCard } from "lucide-react";
 import TabbyTamaraBadges from "./TabbyTamaraBadges";
 
 export default function StatsAndTrustBar() {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const barRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (barRef.current) {
+      observer.observe(barRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const stats = [
     {
       value: "+25",
@@ -45,9 +65,13 @@ export default function StatsAndTrustBar() {
   ];
 
   return (
-    <section id="trust-stats" className="relative -mt-6 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="trust-stats" ref={barRef} className="relative -mt-8 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Metrics Grid */}
-      <div className="bg-white rounded-3xl shadow-xl border border-slate-200/80 p-4 sm:p-8">
+      <div
+        className={`bg-white/98 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-200/90 p-5 sm:p-8 transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        }`}
+      >
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {stats.map((stat, index) => {
             const Icon = stat.icon;

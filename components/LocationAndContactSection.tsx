@@ -13,11 +13,35 @@ import {
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
 export default function LocationAndContactSection() {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const sectionRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const googleMapsUrl = "https://maps.google.com/?q=Dima+Dental+Center+Al+Olaya+Riyadh";
 
   return (
-    <section id="contact" className="py-24 bg-slate-50 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" ref={sectionRef} className="py-24 bg-slate-50 relative overflow-hidden">
+      <div
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        }`}
+      >
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">

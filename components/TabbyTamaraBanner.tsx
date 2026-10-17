@@ -12,17 +12,40 @@ import { TabbyBadge, TamaraBadge } from "./TabbyTamaraBadges";
 
 export default function TabbyTamaraBanner() {
   const [treatmentCost, setTreatmentCost] = useState<number>(4000);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const predefinedAmounts = [1000, 4000, 8000, 12000];
   const monthlyInstallment = Math.round(treatmentCost / 4);
 
   return (
-    <section id="financing" className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-cyan-950 text-white relative overflow-hidden">
+    <section id="financing" ref={sectionRef} className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-cyan-950 text-white relative overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        }`}
+      >
         
         {/* Main Grid: Info + Interactive Installment Calculator */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

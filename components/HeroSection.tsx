@@ -36,6 +36,11 @@ export default function HeroSection({
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     if (selectedDoctor) {
@@ -95,7 +100,11 @@ export default function HeroSection({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Content & Value Props */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-right">
+          <div
+            className={`lg:col-span-7 space-y-6 text-center lg:text-right transition-all duration-700 ${
+              isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
             
             {/* Elite Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/70 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-semibold shadow-inner backdrop-blur-md">
@@ -182,8 +191,13 @@ export default function HeroSection({
           </div>
 
           {/* Interactive Booking Card */}
-          <div className="lg:col-span-5" id="booking-widget">
-            <div className="relative bg-white/95 backdrop-blur-2xl text-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200/90 hover:border-amber-500/40 transition-colors">
+          <div
+            className={`lg:col-span-5 transition-all duration-700 delay-150 ${
+              isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+            id="booking-widget"
+          >
+            <div className="relative bg-white/95 backdrop-blur-2xl text-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200/90 hover:border-amber-500/40 transition-colors luxury-card">
               
               {/* Card Header */}
               <div className="flex items-center justify-between pb-4 border-b border-slate-100">

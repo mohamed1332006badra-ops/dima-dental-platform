@@ -15,6 +15,26 @@ interface GoogleReview {
 }
 
 export default function GoogleReviewsSection() {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const sectionRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const reviews: GoogleReview[] = [
     {
       id: "review-basel",
@@ -52,7 +72,7 @@ export default function GoogleReviewsSection() {
   ];
 
   return (
-    <section id="reviews" className="py-24 bg-white relative overflow-hidden" dir="rtl">
+    <section id="reviews" ref={sectionRef} className="py-24 bg-white relative overflow-hidden" dir="rtl">
       {/* Background Decorative Accents */}
       <div className="absolute top-1/2 -right-40 w-96 h-96 bg-cyan-50/60 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/2 -left-40 w-96 h-96 bg-amber-50/60 rounded-full blur-3xl pointer-events-none" />
@@ -81,10 +101,15 @@ export default function GoogleReviewsSection() {
 
         {/* 3 Verified Review Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {reviews.map((rev) => (
+          {reviews.map((rev, index) => (
             <div
               key={rev.id}
-              className="bg-slate-50/80 hover:bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 hover:border-amber-500/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative"
+              style={{
+                transitionDelay: `${index * 150}ms`,
+              }}
+              className={`bg-slate-50/80 hover:bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 hover:border-amber-500/40 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-2 relative luxury-card ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
             >
               {/* Top Quote Decor */}
               <div className="absolute top-6 left-6 text-slate-200 group-hover:text-amber-100 transition-colors pointer-events-none">

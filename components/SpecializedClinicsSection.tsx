@@ -31,6 +31,26 @@ export default function SpecializedClinicsSection({
 }: {
   onSelectSpecialty?: (specialty: string) => void;
 } = {}) {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const sectionRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const services: ServiceItem[] = [
     {
       id: "orthodontics",
@@ -71,7 +91,7 @@ export default function SpecializedClinicsSection({
       subtitle: "Pediatric Dentistry & General Anesthesia",
       description: "إنهاء جميع مشاكل التسوس للأطفال وذوي الاحتياجات الخاصة في جلسة واحدة دون خوف أو توتر، تحت إشراف نخبة من استشاريي التخدير المعتمدين.",
       icon: Baby,
-      image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80",
+      image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80",
       features: ["وحدة تخدير كلي متكاملة ومعتمدة", "إنهاء كافة المعالجات بجلسة واحدة", "بيئة مرحة ومريحة لطمأنة الطفل"],
       specialtyTag: "وحدة معتمدة للأطفال",
       specialtyValue: "أسنان أطفال وتخدير كلي",
@@ -93,7 +113,7 @@ export default function SpecializedClinicsSection({
       subtitle: "Laser Whitening & Hygiene",
       description: "إزالة الجير والتصبغات العميقة واستعادة النضارة الطبيعية للأسنان ببروتوكولات التبييض البارد بالليزر في جلسة لا تتجاوز 45 دقيقة.",
       icon: Zap,
-      image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=600&q=80",
+      image: "https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=600&q=80",
       features: ["تفتيح يصل إلى 8 درجات أفتح", "حماية المينا وتقليل حساسية الأسنان", "إزالة التصبغات الناتجة عن القهوة والتدخين"],
       specialtyTag: "نتائج فورية بجلسة واحدة",
       specialtyValue: "تنظيف وتبييض الأسنان بالليزر",
@@ -111,7 +131,7 @@ export default function SpecializedClinicsSection({
   };
 
   return (
-    <section id="services" className="py-24 bg-[#F8FAFC] relative overflow-hidden">
+    <section id="services" ref={sectionRef} className="py-24 bg-[#F8FAFC] relative overflow-hidden">
       {/* Decorative Subtle Ambient Glows */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-cyan-100/50 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-amber-100/40 rounded-full blur-[140px] pointer-events-none" />
@@ -136,23 +156,29 @@ export default function SpecializedClinicsSection({
 
         {/* Services Grid: Crisp White Cards on Seamless Soft Background */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => {
+          {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <div
                 key={service.id}
-                className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 hover:border-cyan-500/50 transition-all duration-300 flex flex-col group hover:-translate-y-2 shadow-md hover:shadow-xl"
+                style={{
+                  animationDelay: `${index * 120}ms`,
+                  transitionDelay: `${index * 80}ms`,
+                }}
+                className={`bg-white rounded-3xl overflow-hidden border border-slate-200/90 hover:border-cyan-500/50 flex flex-col group hover:-translate-y-2 shadow-md hover:shadow-2xl transition-all duration-500 luxury-card ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
               >
                 {/* Visual Top Image with Specialty Tag */}
-                <div className="relative h-52 w-full overflow-hidden bg-slate-100">
+                <div className="relative h-56 w-full overflow-hidden bg-slate-100">
                   <Image
                     src={service.image}
                     alt={service.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
 
                   {/* Specialty Tag Badge */}
                   <span className="absolute top-4 right-4 bg-slate-900/90 text-amber-400 border border-amber-500/30 text-[11px] font-bold px-3 py-1 rounded-full shadow-md backdrop-blur-md">
@@ -160,7 +186,7 @@ export default function SpecializedClinicsSection({
                   </span>
 
                   {/* Icon Emblem */}
-                  <div className="absolute bottom-3 right-4 w-12 h-12 rounded-xl bg-cyan-700 backdrop-blur-md flex items-center justify-center text-white border border-cyan-400/40 shadow-lg shrink-0">
+                  <div className="absolute bottom-3 right-4 w-12 h-12 rounded-xl bg-cyan-700/95 backdrop-blur-md flex items-center justify-center text-white border border-cyan-400/40 shadow-lg shrink-0 group-hover:rotate-6 transition-transform duration-300">
                     <Icon size={24} className="w-6 h-6 text-amber-300" />
                   </div>
                 </div>
@@ -194,7 +220,7 @@ export default function SpecializedClinicsSection({
                     <button
                       type="button"
                       onClick={() => handleBookService(service.specialtyValue)}
-                      className="w-full bg-slate-900 hover:bg-cyan-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
+                      className="w-full bg-slate-900 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer btn-premium"
                     >
                       <span>احجز هذا القسم</span>
                       <ArrowLeft size={14} className="w-3.5 h-3.5 shrink-0" />
