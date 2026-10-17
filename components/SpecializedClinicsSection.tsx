@@ -38,7 +38,7 @@ export default function SpecializedClinicsSection({
       subtitle: "Clear Aligners & Orthodontics",
       description: "علاج الفراغات وتزاحم الأسنان وتصحيح إطباق الفكين بأحدث أجهزة التقويم الشفاف غير المرئي والتقويم الكريستالي السريع.",
       icon: Smile,
-      image: "https://images.unsplash.com/photo-1572021335469-31706a17aaef?auto=format&fit=crop&w=600&q=80",
+      image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=600&q=80",
       features: ["قوالب شفافة غير مرئية ومتحركة", "تخطيط ثلاثي الأبعاد لخطوات العلاج", "متابعة دورية رقمية مرنة"],
       specialtyTag: "تقويم حديث بدون ألم",
       specialtyValue: "تقويم أسنان شفاف ومعدني",
