@@ -41,7 +41,6 @@ export default function FloatingWhatsApp() {
             <button
               onClick={() => setIsOpen(false)}
               className="absolute top-4 left-4 text-slate-400 hover:text-white transition"
-              aria-label="إغلاق"
             >
               <X size={18} />
             </button>
@@ -50,7 +49,7 @@ export default function FloatingWhatsApp() {
           <div className="p-4 bg-slate-50 space-y-3">
             <div className="bg-white p-3 rounded-2xl rounded-tr-none shadow-sm border border-slate-100 text-xs text-slate-700 leading-relaxed">
               <p className="font-medium text-slate-900 mb-1">أهلاً بك في مجمع ديمة بالرياض 🦷</p>
-              يسعدنا خدمتك والرد على كافة استفساراتك وتنسيق موعدك مع نخبة أطبائنا. اختر الخدمة للبدء فوراً:
+              يسعدنا خدمتك والرد على استفساراتك وتنسيق موعدك مع نخبة أطبائنا. اختر الخدمة للبدء:
               <div className="mt-1 flex items-center justify-end gap-1 text-[10px] text-slate-400">
                 <span>الآن</span>
                 <CheckCheck className="text-blue-500" size={12} />
