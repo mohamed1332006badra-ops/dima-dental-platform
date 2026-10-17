@@ -38,7 +38,7 @@ const doctors: Doctor[] = [
     specialty: "ابتسامة هوليوود، الفينير، والحشوات التجميلية الرقمية",
     experience: "+10 سنوات خبرة",
     rating: "4.8 ★",
-    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80",
   },
   {
     id: "dakhila",
